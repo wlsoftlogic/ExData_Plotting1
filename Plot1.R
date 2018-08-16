@@ -1,9 +1,15 @@
+# Data Sciennce Course 4
+# Week 1 Project
+# August 2018
+
 setwd("C:/Training/Data Science/Course 4 Exploratory Data Analysis/Week 1/Project")
 
+# read full file into Fulldata
 Fulldata <- read.table("household_power_consumption.txt", stringsAsFactors = FALSE, header = TRUE, sep =";"  )
 
 dim(Fulldata)
 # [1] 2075259       9
+# subset the data for the required date range
 
 Subdata <- subset(Fulldata, Date == "1/2/2007" | Date =="2/2/2007")
 
@@ -28,6 +34,7 @@ Subdata$Date <- as.Date(Subdata$Date, format="%d/%m/%Y")
 Subdata$Time <- format(Subdata$Time, format="%H:%M:%S")
 Subdata$Global_active_power <- as.numeric(Subdata$Global_active_power)
 
+# setup png device
 png("plot1.png", width=480, height=480)
 hist(Subdata$Global_active_power, col="red", border="black", main ="Global Active Power", xlab="Global Active Power (kilowatts)")
 dev.off()
