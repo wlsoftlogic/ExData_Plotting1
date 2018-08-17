@@ -31,14 +31,11 @@ str(Subdata)
 
 # change the data classes to proper classes
 
-FullTimeDate <- strptime(paste(Subdata$Date, Subdata$Time), "%d/%m/%Y %H:%M:%S")
-
 Subdata$Date <- as.Date(Subdata$Date, format="%d/%m/%Y")
 Subdata$Time <- format(Subdata$Time, format="%H:%M:%S")
 Subdata$Sub_metering_1 <- as.numeric(Subdata$Sub_metering_1)
 Subdata$Sub_metering_2 <- as.numeric(Subdata$Sub_metering_2)
 Subdata$Sub_metering_3 <- as.numeric(Subdata$Sub_metering_3)
-
 
 #png("plot1.png", width=480, height=480)
 #hist(Subdata$Global_active_power, col="red", border="black", main ="Global Active Power", xlab="Global Active Power (kilowatts)")
@@ -46,18 +43,14 @@ Subdata$Sub_metering_3 <- as.numeric(Subdata$Sub_metering_3)
 
 # read in date/time info in format 'm/d/y h:m:s'
 
-#FullTimeDate <- strptime(paste(Subdata$Date, Subdata$Time), "%d/%m/%Y %H:%M:%S")
-#FullTimeDate <- strptime(paste(Subdata$Date, Subdata$Time, sep=" "), "%d/%m/%Y %H:%M:%S")
-
-#FullTimeDate <- strptime(paste(Subdata$Date, Subdata$Time, sep=" "), "%y-%m-%d %H:%M:%S")
-
+# create  x axis DataTime
 DateTime <- strptime(paste(Subdata$Date, Subdata$Time, sep=" "), "%Y-%m-%d %H:%M:%S")
-
-#png("plot2.png", width=480, height=480)
+# setup png device
+png("plot3.png", width=480, height=480)
 with(Subdata, plot(DateTime, Sub_metering_1, type="l", xlab="Day", ylab="Energy sub metering"), type="n")
 lines(DateTime, Subdata$Sub_metering_1,type="l", col= "black")
 lines(DateTime, Subdata$Sub_metering_2,type="l", col= "red")
 lines(DateTime, Subdata$Sub_metering_3,type="l", col= "blue")
 # legend(x, y=NULL, legend, fill, col, bg)
 legend(c("topright"), c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), lty= 1, lwd=2, col=c("black","red","blue"))
-#dev.off()
+dev.off()

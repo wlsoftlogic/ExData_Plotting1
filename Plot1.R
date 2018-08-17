@@ -1,20 +1,20 @@
 # Data Sciennce Course 4
 # Week 1 Project
 # August 2018
-
+# plot1
+#
 setwd("C:/Training/Data Science/Course 4 Exploratory Data Analysis/Week 1/Project")
 
 # read full file into Fulldata
 Fulldata <- read.table("household_power_consumption.txt", stringsAsFactors = FALSE, header = TRUE, sep =";"  )
 
 dim(Fulldata)
-# [1] 2075259       9
+
 # subset the data for the required date range
 
 Subdata <- subset(Fulldata, Date == "1/2/2007" | Date =="2/2/2007")
 
 dim(Subdata)
-# [1] 2880    9
 
 str(Subdata)
 #'data.frame':	2880 obs. of  9 variables:
